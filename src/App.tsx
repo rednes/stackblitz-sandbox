@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import './styles/global.css';
+import './styles/tailwind.css';
 
 export const App: FC<{ name: string }> = ({ name }) => {
   return (

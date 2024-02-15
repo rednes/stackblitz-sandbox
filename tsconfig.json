@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
     "moduleResolution": "node",

@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import "./style.css";
 
-import './style.css';
+import { FC } from "react";
 
 export const App: FC<{ name: string }> = ({ name }) => {
   return (

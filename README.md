@@ -1,3 +1,3 @@
-# stackblitz-starters-ygrfbb
+# stackblitz-sandbox
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/rednes/stackblitz-starters-ygrfbb)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rednes/stackblitz-sandbox/tree/main)

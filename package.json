@@ -9,7 +9,7 @@
     "react-dom": "18.2.0"
   },
   "scripts": {
-    "start": "echo hoge",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "prettier --write 'src/**/*.{ts,tsx}' && eslint --fix --ext .ts --ext .tsx src",
     "test": "react-scripts test --env=jsdom",

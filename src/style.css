@@ -10,3 +10,21 @@ h1 {
   font-weight: 800;
   font-size: 1.5rem;
 }
+
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  padding: 1px;
+}
+
+th {
+  border: 1px dashed lightgray;
+  border-bottom: 1px solid black;
+  padding: 4px;
+  background: lavender;
+}
+
+td {
+  border: 1px dashed lightgray;
+  padding: 4px;
+}

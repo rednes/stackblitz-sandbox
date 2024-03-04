@@ -4,6 +4,7 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { FC, useEffect, useState } from 'react';
@@ -32,9 +33,11 @@ export const App: FC = () => {
         pageIndex: initialPageIndex,
         pageSize: initialPageSize,
       },
+      sorting: [{ id: 'id', desc: true }],
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -46,9 +49,17 @@ export const App: FC = () => {
               <td>PaginationState</td>
               <td>{JSON.stringify(table.getState().pagination)}</td>
             </tr>
+            <tr>
+              <td>SortingState</td>
+              <td>{JSON.stringify(table.getState().sorting)}</td>
+            </tr>
           </tbody>
         </table>
-        <div style={{ margin: '5px' }}>
+        <div
+          style={{
+            margin: '5px',
+          }}
+        >
           <select
             style={{ margin: '5px' }}
             value={table.getState().pagination.pageSize}
@@ -122,6 +133,7 @@ export const App: FC = () => {
             })}
           </tbody>
         </table>
+        <div style={{ padding: '10px' }} />
       </main>
     </div>
   );

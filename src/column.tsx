@@ -1,7 +1,13 @@
-import { ColumnDef } from '@tanstack/react-table';
+import { Column, ColumnDef, SortDirection } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale/ja';
-import { TiEdit } from 'react-icons/ti';
+import { JSX } from 'react';
+import {
+  TiArrowSortedDown,
+  TiArrowSortedUp,
+  TiArrowUnsorted,
+  TiEdit,
+} from 'react-icons/ti';
 
 export type User = {
   id: number;
@@ -11,6 +17,31 @@ export type User = {
   createdAt: number; // UNIX timestamp（ミリ秒）
   createdAtStr: string; // ISO時刻文字列
 };
+
+const getSortIcon = (sortDirection: false | SortDirection): JSX.Element => {
+  switch (sortDirection) {
+    case 'asc':
+      return <TiArrowSortedUp />;
+    case 'desc':
+      return <TiArrowSortedDown />;
+    default:
+      return <TiArrowUnsorted />;
+  }
+};
+
+const sortableHeader =
+  (headerName: string) =>
+  ({ column }: { column: Column<User, unknown> }): JSX.Element => {
+    return (
+      <div
+        style={{ flex: 'auto', alignItems: 'center', cursor: 'pointer' }}
+        onClick={column.getToggleSortingHandler()}
+      >
+        {headerName}
+        {getSortIcon(column.getIsSorted())}
+      </div>
+    );
+  };
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -31,11 +62,15 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'id',
-    header: 'ID',
+    header: sortableHeader('ID'),
   },
   {
     accessorKey: 'lastName',
     header: '名字',
+  },
+  {
+    accessorKey: 'firstName',
+    header: '名前',
   },
   {
     accessorKey: 'email',
@@ -43,7 +78,7 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'createdAt',
-    header: '登録日時(UNIX)',
+    header: sortableHeader('登録日時(UNIX)'),
     cell: ({ row }) => {
       const user = row.original;
       return format(new Date(user.createdAt), 'yyyy/MM/dd HH:mm', {
@@ -53,6 +88,6 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'createdAtStr',
-    header: '登録日時(ISO時刻)',
+    header: sortableHeader('登録日時(ISO時刻)'),
   },
 ];

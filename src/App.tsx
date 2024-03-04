@@ -3,6 +3,7 @@ import './style.css';
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -33,11 +34,11 @@ export const App: FC = () => {
         pageIndex: initialPageIndex,
         pageSize: initialPageSize,
       },
-      sorting: [{ id: 'id', desc: true }],
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   return (
@@ -52,6 +53,10 @@ export const App: FC = () => {
             <tr>
               <td>SortingState</td>
               <td>{JSON.stringify(table.getState().sorting)}</td>
+            </tr>
+            <tr>
+              <td>FilteringState</td>
+              <td>{JSON.stringify(table.getState().columnFilters)}</td>
             </tr>
           </tbody>
         </table>
@@ -96,6 +101,15 @@ export const App: FC = () => {
           >
             {'>'}
           </button>
+        </div>
+        <div style={{ padding: '10px' }}>
+          <input
+            placeholder="Filter emails..."
+            value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+            onChange={(e) =>
+              table.getColumn('email')?.setFilterValue(e.target.value)
+            }
+          />
         </div>
         <table>
           <thead>

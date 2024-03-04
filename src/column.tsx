@@ -38,10 +38,6 @@ export const columns: ColumnDef<User>[] = [
     header: '名字',
   },
   {
-    accessorKey: 'firstName',
-    header: '名前',
-  },
-  {
     accessorKey: 'email',
     header: 'E-mail',
   },

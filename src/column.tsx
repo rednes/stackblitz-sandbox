@@ -85,9 +85,11 @@ export const columns: ColumnDef<User>[] = [
         locale: ja,
       });
     },
+    enableGlobalFilter: false,
   },
   {
     accessorKey: 'createdAtStr',
     header: sortableHeader('登録日時(ISO時刻)'),
+    enableGlobalFilter: false,
   },
 ];

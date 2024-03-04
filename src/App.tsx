@@ -55,8 +55,12 @@ export const App: FC = () => {
               <td>{JSON.stringify(table.getState().sorting)}</td>
             </tr>
             <tr>
-              <td>FilteringState</td>
+              <td>FiltersState</td>
               <td>{JSON.stringify(table.getState().columnFilters)}</td>
+            </tr>
+            <tr>
+              <td>GlobalFilterState</td>
+              <td>{JSON.stringify(table.getState().globalFilter)}</td>
             </tr>
           </tbody>
         </table>
@@ -109,6 +113,11 @@ export const App: FC = () => {
             onChange={(e) =>
               table.getColumn('email')?.setFilterValue(e.target.value)
             }
+          />
+          <input
+            placeholder="Filter all..."
+            // value={(table.getGlobalFilter() as string) ?? ""}
+            onChange={(e) => table.setGlobalFilter(e.target.value)}
           />
         </div>
         <table>

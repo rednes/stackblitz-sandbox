@@ -1,6 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale/ja';
+import { TiEdit } from 'react-icons/ti';
 
 export type User = {
   id: number;
@@ -13,12 +14,32 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
+    id: 'actions',
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() =>
+            alert(`${user.id}:${user.email}の編集ボタンがクリックされました。`)
+          }
+        >
+          <TiEdit />
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'id',
     header: 'ID',
   },
   {
     accessorKey: 'lastName',
     header: '名字',
+  },
+  {
+    accessorKey: 'firstName',
+    header: '名前',
   },
   {
     accessorKey: 'email',

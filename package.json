@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "prettier --write 'src/**/*.{ts,tsx}' && eslint --fix --ext .ts --ext .tsx src",
+    "lint": "prettier --write 'src/**/*.{ts,tsx,css}' && eslint --fix --ext .ts --ext .tsx src",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

@@ -1,5 +1,5 @@
 import { Column, ColumnDef, SortDirection } from '@tanstack/react-table';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { ja } from 'date-fns/locale/ja';
 import { JSX } from 'react';
 import {
@@ -84,6 +84,16 @@ export const columns: ColumnDef<User>[] = [
       return format(new Date(user.createdAt), 'yyyy/MM/dd HH:mm', {
         locale: ja,
       });
+    },
+    filterFn: (row, _, filterValue) => {
+      const { from, to } = filterValue as { from?: string; to?: string };
+      const createdAt = row?.original?.createdAt;
+
+      return (
+        (!from ||
+          parse(from, 'yyyy-MM-dd', new Date()).getTime() <= createdAt) &&
+        (!to || createdAt <= parse(to, 'yyyy-MM-dd', new Date()).getTime())
+      );
     },
     enableGlobalFilter: false,
   },

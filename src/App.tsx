@@ -116,8 +116,45 @@ export const App: FC = () => {
           />
           <input
             placeholder="Filter all..."
-            // value={(table.getGlobalFilter() as string) ?? ""}
+            value={(table.getState().globalFilter as string) ?? ''}
             onChange={(e) => table.setGlobalFilter(e.target.value)}
+          />
+          <input
+            type="date"
+            value={
+              (table.getColumn('createdAt')?.getFilterValue()?.[
+                'from'
+              ] as string) ?? ''
+            }
+            onChange={(e) =>
+              table
+                .getColumn('createdAt')
+                ?.setFilterValue((old: { from?: string; to?: string }) => {
+                  return {
+                    ...old,
+                    from: e.target.value,
+                  };
+                })
+            }
+          />
+          〜
+          <input
+            type="date"
+            value={
+              (table.getColumn('createdAt')?.getFilterValue()?.[
+                'to'
+              ] as string) ?? ''
+            }
+            onChange={(e) =>
+              table
+                .getColumn('createdAt')
+                ?.setFilterValue((old: { from?: string; to?: string }) => {
+                  return {
+                    ...old,
+                    to: e.target.value,
+                  };
+                })
+            }
           />
         </div>
         <table>

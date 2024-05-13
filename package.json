@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run -w frontend dev",
+    "dev": "npm run -w backend dev & npm run -w frontend dev",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && prettier 'src/**/*.{ts,tsx,css}'",
     "lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && prettier --write 'src/**/*.{ts,tsx,css}'",

@@ -1,14 +1,10 @@
 {
-  "name": "json-server-starter",
+  "name": "stackblitz-sandbox-backend",
   "private": true,
   "scripts": {
-    "frontend": "http-server",
-    "backend": "json-server -w db.json"
-  },
-  "dependencies": {
-    "http-server": "^0.12.3"
+    "dev": "json-server -w db.json"
   },
   "devDependencies": {
-    "json-server": "^0.16.3"
+    "json-server": "^0.17.4"
   }
 }

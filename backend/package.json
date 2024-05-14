@@ -2,7 +2,7 @@
   "name": "stackblitz-sandbox-backend",
   "private": true,
   "scripts": {
-    "dev": "json-server -w db.json"
+    "dev": "json-server -w db.json -p 8080"
   },
   "devDependencies": {
     "json-server": "^0.17.4"

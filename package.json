@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run backend & npm run frontend",
+    "dev": "run-p backend frontend",
     "frontend": "npm run -w frontend dev",
     "backend": "npm run -w backend dev",
     "build": "tsc && vite build",
@@ -16,7 +16,7 @@
     "backend",
     "frontend"
   ],
-  "stackblitz": {
-    "startCommand": "npm run backend"
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -7,10 +7,8 @@
     "dev": "run-p backend frontend",
     "frontend": "npm run -w frontend dev",
     "backend": "npm run -w backend dev",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && prettier 'src/**/*.{ts,tsx,css}'",
-    "lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && prettier --write 'src/**/*.{ts,tsx,css}'",
-    "preview": "vite preview"
+    "lint": "npm run -w frontend lint",
+    "lint:fix": "npm run -w frontend lint:fix"
   },
   "workspaces": [
     "backend",

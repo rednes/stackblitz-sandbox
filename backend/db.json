@@ -3,17 +3,12 @@
     {
       "id": 1,
       "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "author": "くらにゃん"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "title": "vite + react",
+      "author": "Kura-Nyan"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

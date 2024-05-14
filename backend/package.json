@@ -2,9 +2,12 @@
   "name": "stackblitz-sandbox-backend",
   "private": true,
   "scripts": {
-    "dev": "json-server -w db.json -p 8080"
+    "dev": "json-server -w db.json -p 8080",
+    "lint": "prettier './db.json' --ignore-unknown",
+    "lint:fix": "npm run lint -- --write"
   },
   "devDependencies": {
-    "json-server": "^0.17.4"
+    "json-server": "^0.17.4",
+    "prettier": "^3.2.5"
   }
 }

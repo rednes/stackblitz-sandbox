@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "run-p backend frontend",
+    "dev": "npm-run-all --parallel backend frontend",
     "frontend": "npm run -w frontend dev",
     "backend": "npm run -w backend dev",
-    "lint": "npm run -w frontend lint",
-    "lint:fix": "npm run -w frontend lint:fix"
+    "lint": "npm run --workspaces lint",
+    "lint:fix": "npm run --workspaces lint:fix"
   },
   "workspaces": [
     "backend",

@@ -1,6 +1,12 @@
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import fastify from "fastify";
+import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
+
+const PingResponse = z.object({
+  message: z.string(),
+});
 
 const main = async (): Promise<void> => {
   const server = fastify();
@@ -13,7 +19,7 @@ const main = async (): Promise<void> => {
     {
       schema: {
         response: {
-          200: { properties: { message: { type: "string" } } },
+          200: zodToJsonSchema(PingResponse),
         },
       },
     },

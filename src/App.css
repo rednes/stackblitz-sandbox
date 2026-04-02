@@ -115,6 +115,74 @@ h2 {
   border-color: #fff;
 }
 
+.seg-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #444;
+  color: #555;
+  background: transparent;
+}
+
+.seg-btn:disabled:hover {
+  border-color: #444;
+  color: #555;
+}
+
+/* Toggle button */
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 1px solid #444;
+  color: #aaa;
+  background: transparent;
+  font-size: 0.85rem;
+  padding: 0.4em 0.9em;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 2.5ch;
+  text-align: left;
+}
+
+.toggle-track {
+  display: inline-block;
+  position: relative;
+  width: 28px;
+  height: 16px;
+  border-radius: 8px;
+  background: #555;
+  transition: background 0.2s;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #aaa;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.toggle-btn.on .toggle-track {
+  background: #4ade80;
+}
+
+.toggle-btn.on .toggle-thumb {
+  transform: translateX(12px);
+  background: #fff;
+}
+
 @media (max-width: 700px) {
   .columns {
     flex-direction: column;
@@ -151,5 +219,29 @@ h2 {
     background: #111;
     color: #fff;
     border-color: #111;
+  }
+
+  .seg-btn:disabled {
+    opacity: 0.3;
+    border-color: #ccc;
+    color: #999;
+  }
+
+  .seg-btn:disabled:hover {
+    border-color: #ccc;
+    color: #999;
+  }
+
+  .toggle-btn {
+    border-color: #ccc;
+    color: #666;
+  }
+
+  .toggle-track {
+    background: #ccc;
+  }
+
+  .toggle-thumb {
+    background: #fff;
   }
 }

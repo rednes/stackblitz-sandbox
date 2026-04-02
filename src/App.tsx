@@ -62,7 +62,7 @@ function App() {
   const [height, setHeight] = useState('3px');
   const [speed, setSpeed] = useState(400);
   const [easing, setEasing] = useState('ease');
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(true);
   const [spinnerPos, setSpinnerPos] = useState<SpinnerPosition>('top-right');
   const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
   const [trickle, setTrickle] = useState(true);
@@ -256,22 +256,27 @@ function App() {
             <div className="btn-row">
               <button
                 type="button"
-                className={`seg-btn${showSpinner ? ' active' : ''}`}
+                className={`toggle-btn${showSpinner ? ' on' : ''}`}
                 onClick={handleSpinnerToggle}
               >
-                {showSpinner ? 'ON' : 'OFF'}
+                <span className="toggle-track">
+                  <span className="toggle-thumb" />
+                </span>
+                <span className="toggle-label">
+                  {showSpinner ? 'ON' : 'OFF'}
+                </span>
               </button>
-              {showSpinner &&
-                SPINNER_POSITIONS.map((pos) => (
-                  <button
-                    key={pos}
-                    type="button"
-                    className={`seg-btn${spinnerPos === pos ? ' active' : ''}`}
-                    onClick={() => handleSpinnerPosChange(pos)}
-                  >
-                    {pos}
-                  </button>
-                ))}
+              {SPINNER_POSITIONS.map((pos) => (
+                <button
+                  key={pos}
+                  type="button"
+                  className={`seg-btn${spinnerPos === pos ? ' active' : ''}`}
+                  disabled={!showSpinner}
+                  onClick={() => handleSpinnerPosChange(pos)}
+                >
+                  {pos}
+                </button>
+              ))}
             </div>
           </section>
 
@@ -296,22 +301,25 @@ function App() {
             <div className="btn-row">
               <button
                 type="button"
-                className={`seg-btn${trickle ? ' active' : ''}`}
+                className={`toggle-btn${trickle ? ' on' : ''}`}
                 onClick={handleTrickleToggle}
               >
-                {trickle ? 'ON' : 'OFF'}
+                <span className="toggle-track">
+                  <span className="toggle-thumb" />
+                </span>
+                <span className="toggle-label">{trickle ? 'ON' : 'OFF'}</span>
               </button>
-              {trickle &&
-                TRICKLE_SPEEDS.map((s) => (
-                  <button
-                    key={s.value}
-                    type="button"
-                    className={`seg-btn${trickleSpeed === s.value ? ' active' : ''}`}
-                    onClick={() => handleTrickleSpeedChange(s.value)}
-                  >
-                    {s.label}
-                  </button>
-                ))}
+              {TRICKLE_SPEEDS.map((s) => (
+                <button
+                  key={s.value}
+                  type="button"
+                  className={`seg-btn${trickleSpeed === s.value ? ' active' : ''}`}
+                  disabled={!trickle}
+                  onClick={() => handleTrickleSpeedChange(s.value)}
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
           </section>
         </div>

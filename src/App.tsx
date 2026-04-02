@@ -1,5 +1,6 @@
 import './App.css';
 
+import { css } from '@bprogress/core';
 import type { SpinnerPosition } from '@bprogress/react';
 import { useProgress } from '@bprogress/react';
 import { useCallback, useState } from 'react';
@@ -41,6 +42,28 @@ const TRICKLE_SPEEDS = [
 
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
+function applyProgressCss(
+  color: string,
+  height: string,
+  spinnerPosition: SpinnerPosition
+) {
+  const id = 'bprogress-custom';
+  let el = document.getElementById(id) as HTMLStyleElement | null;
+  if (!el) {
+    el = document.createElement('style');
+    el.id = id;
+    document.head.appendChild(el);
+  }
+  el.textContent = css({ color, height, spinnerPosition });
+}
+
+const INITIAL_COLOR: string = '#0A2FFF';
+const INITIAL_HEIGHT: string = '3px';
+const INITIAL_SPINNER_POS: SpinnerPosition = 'top-right';
+
+// Apply CSS on module load (before first render)
+applyProgressCss(INITIAL_COLOR, INITIAL_HEIGHT, INITIAL_SPINNER_POS);
+
 const DIRECTION_OPTIONS = ['ltr', 'rtl'] as const;
 
 // rendering-hoist-jsx: static JSX hoisted outside component to avoid re-creation
@@ -58,25 +81,32 @@ function App() {
   const { start, stop, pause, resume, setOptions } = useProgress();
   const [isFetching, setIsFetching] = useState(false);
 
-  const [color, setColor] = useState('#0A2FFF');
-  const [height, setHeight] = useState('3px');
-  const [speed, setSpeed] = useState(400);
-  const [easing, setEasing] = useState('ease');
+  const [color, setColor] = useState(INITIAL_COLOR);
+  const [height, setHeight] = useState(INITIAL_HEIGHT);
+  const [speed, setSpeed] = useState(200);
+  const [easing, setEasing] = useState('linear');
   const [showSpinner, setShowSpinner] = useState(true);
-  const [spinnerPos, setSpinnerPos] = useState<SpinnerPosition>('top-right');
+  const [spinnerPos, setSpinnerPos] =
+    useState<SpinnerPosition>(INITIAL_SPINNER_POS);
   const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
   const [trickle, setTrickle] = useState(true);
   const [trickleSpeed, setTrickleSpeed] = useState(200);
 
-  const handleColorChange = useCallback((c: string) => {
-    setColor(c);
-    document.documentElement.style.setProperty('--progress-color', c);
-  }, []);
+  const handleColorChange = useCallback(
+    (c: string) => {
+      setColor(c);
+      applyProgressCss(c, height, spinnerPos);
+    },
+    [height, spinnerPos]
+  );
 
-  const handleHeightChange = useCallback((h: string) => {
-    setHeight(h);
-    document.documentElement.style.setProperty('--bprogress-height', h);
-  }, []);
+  const handleHeightChange = useCallback(
+    (h: string) => {
+      setHeight(h);
+      applyProgressCss(color, h, spinnerPos);
+    },
+    [color, spinnerPos]
+  );
 
   const handleSpeedChange = useCallback(
     (s: number) => {
@@ -101,19 +131,13 @@ function App() {
     });
   }, [setOptions]);
 
-  // js-batch-dom-css: batch CSS custom property writes via cssText
-  const handleSpinnerPosChange = useCallback((pos: SpinnerPosition) => {
-    setSpinnerPos(pos);
-    const top = pos.startsWith('top') ? '15px' : 'auto';
-    const bottom = pos.startsWith('bottom') ? '15px' : 'auto';
-    const right = pos.endsWith('right') ? '15px' : 'auto';
-    const left = pos.endsWith('left') ? '15px' : 'auto';
-    const el = document.documentElement;
-    el.style.setProperty('--bprogress-spinner-top', top);
-    el.style.setProperty('--bprogress-spinner-bottom', bottom);
-    el.style.setProperty('--bprogress-spinner-right', right);
-    el.style.setProperty('--bprogress-spinner-left', left);
-  }, []);
+  const handleSpinnerPosChange = useCallback(
+    (pos: SpinnerPosition) => {
+      setSpinnerPos(pos);
+      applyProgressCss(color, height, pos);
+    },
+    [color, height]
+  );
 
   const handleDirectionChange = useCallback(
     (d: 'ltr' | 'rtl') => {

@@ -1,42 +1,155 @@
-#root {
-  max-width: 1280px;
+.layout {
+  max-width: 960px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1.5rem 4rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header {
+  margin-bottom: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0.25rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
+.subtitle {
   color: #888;
+  margin: 0;
+}
+
+.columns {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+}
+
+.col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #555;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #333;
+}
+
+section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.description {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 0.75rem;
+  font-family: monospace;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Color buttons */
+.color-btn {
+  background-color: var(--c);
+  color: #fff;
+  border: 2px solid transparent;
+  font-weight: 600;
+}
+
+.color-btn:hover {
+  border-color: #fff;
+  opacity: 0.9;
+}
+
+.color-btn.active {
+  border-color: #fff;
+  outline: 2px solid var(--c);
+  outline-offset: 2px;
+}
+
+/* Segment buttons */
+.seg-btn {
+  border: 1px solid #444;
+  color: #aaa;
+  background: transparent;
+  font-size: 0.85rem;
+  padding: 0.4em 0.9em;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.seg-btn:hover {
+  border-color: #888;
+  color: #fff;
+}
+
+.seg-btn.active {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+@media (max-width: 700px) {
+  .columns {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .col-title {
+    color: #999;
+    border-bottom-color: #ddd;
+  }
+
+  section {
+    border-bottom-color: #eee;
+  }
+
+  .subtitle,
+  .description {
+    color: #666;
+  }
+
+  .seg-btn {
+    border-color: #ccc;
+    color: #666;
+  }
+
+  .seg-btn:hover {
+    border-color: #888;
+    color: #333;
+  }
+
+  .seg-btn.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
 }
